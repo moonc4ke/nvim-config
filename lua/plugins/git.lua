@@ -6,8 +6,8 @@ return {
       signs = {
         add = { text = "▎" },
         change = { text = "▎" },
-        delete = { text = "引" },
-        topdelete = { text = "刪" },
+        delete = { text = "▎" },
+        topdelete = { text = "▎" },
         changedelete = { text = "▎" },
         untracked = { text = "▎" },
       },

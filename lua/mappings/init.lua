@@ -32,11 +32,6 @@ M.setup = function()
     vim.fn.setreg('+', relative_path)
     print('Copied to clipboard: ' .. relative_path)
   end, { desc = "Copy relative file path" })
-  
-  -- Add a which-key mapping to show keymaps
-  vim.keymap.set('n', '<leader>?', function()
-    require('which-key').show('<leader>', {mode = 'n', auto = true})
-  end, { desc = "Show all leader keymaps" })
 end
 
 return M 
