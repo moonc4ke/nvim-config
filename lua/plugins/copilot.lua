@@ -1,6 +1,7 @@
--- GitHub Copilot plugin configuration using zbirenbaum's Lua implementation
+-- GitHub Copilot and CopilotChat plugin configuration
 
 return {
+  -- Copilot main plugin
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -53,5 +54,29 @@ return {
         require("copilot.panel").open()
       end, { desc = "Open Copilot panel" })
     end,
+  },
+  
+  -- CopilotChat plugin
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    cmd = {
+      "CopilotChat",
+      "CopilotChatToggle", 
+      "CopilotChatOpen",
+      "CopilotChatClose",
+      "CopilotChatReset"
+    },
+    keys = {
+      { "<leader>cc", "<cmd>CopilotChat<cr>", desc = "CopilotChat - Ask about code" },
+      { "<leader>ce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+      { "<leader>ct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+    },
+    opts = {
+      -- See Configuration section for options
+    },
   }
 } 
