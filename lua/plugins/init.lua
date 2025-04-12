@@ -5,7 +5,7 @@ return {
   require("plugins.colorscheme"),
   require("plugins.telescope"),
   require("plugins.treesitter"),
-  require("plugins.neotree"),
+  require("plugins.oil"),
   require("plugins.image"),
   require("plugins.git"),
   require("plugins.spectre"),

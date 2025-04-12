@@ -26,9 +26,6 @@ M.setup = function()
   end, { desc = "Search literal strings" })
   vim.keymap.set('n', '<leader>ff', builtin.oldfiles, { desc = "File search history" })
   
-  -- NeoTree mappings
-  vim.keymap.set('n', '<C-n>', ':Neotree filesystem toggle reveal left<CR>', { desc = "Toggle NeoTree file explorer" })
-  
   -- Keymap to copy current file's relative path to clipboard
   vim.keymap.set('n', '<leader>cp', function()
     local relative_path = vim.fn.fnamemodify(vim.fn.expand('%'), ':.')
