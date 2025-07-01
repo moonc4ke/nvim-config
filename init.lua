@@ -1,6 +1,9 @@
 -- Neovim configuration entry point
 -- Organized following the single responsibility principle
 
+-- Load Lua paths for magick
+require('core.magick_path')
+
 -- Load core options
 require('core.options')
 
