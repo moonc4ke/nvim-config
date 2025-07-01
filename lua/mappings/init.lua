@@ -32,6 +32,9 @@ M.setup = function()
     vim.fn.setreg('+', relative_path)
     print('Copied to clipboard: ' .. relative_path)
   end, { desc = "Copy relative file path" })
+  
+  -- Zen Mode toggle
+  vim.keymap.set('n', '<leader>z', ':ZenMode<CR>', { desc = "Toggle Zen Mode" })
 end
 
 return M 

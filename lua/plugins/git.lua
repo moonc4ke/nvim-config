@@ -66,6 +66,11 @@ return {
       { "<leader>gc", "<cmd>LazyGitCurrentFile<cr>", desc = "LazyGit Current File" },
     },
     config = function()
+      -- Set nvim as the default editor for lazygit
+      vim.env.EDITOR = "nvim"
+      vim.env.VISUAL = "nvim"
+      vim.env.GIT_EDITOR = "nvim"
+      
       -- set floating window border line color to gray
       vim.g.lazygit_floating_window_border_chars = {
         "╭", "─", "╮", "│", "╯", "─", "╰", "│",
