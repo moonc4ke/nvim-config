@@ -11,5 +11,12 @@ return {
     })
     vim.treesitter.language.register("html", "hbs")
     vim.treesitter.language.register("html", "handlebars")
+    
+    -- Ensure Vue files are detected properly
+    vim.filetype.add({
+      extension = {
+        vue = "vue",
+      },
+    })
   end
 } 

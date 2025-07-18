@@ -15,7 +15,6 @@ return {
         ensure_installed = {
           "ts_ls",        -- TypeScript/JavaScript LSP
           "angularls",    -- Angular LSP
-          "volar",        -- Vue.js LSP
           "html",         -- HTML LSP
           "cssls",        -- CSS LSP
           "eslint",       -- ESLint LSP
@@ -62,21 +61,11 @@ return {
         filetypes = { "css", "scss", "less" },
       })
 
-      -- Vue.js LSP
-      lspconfig.volar.setup({
-        capabilities = capabilities,
-        filetypes = { "vue" },
-        init_options = {
-          vue = {
-            hybridMode = false,
-          },
-        },
-      })
 
       -- ESLint LSP
       lspconfig.eslint.setup({
         capabilities = capabilities,
-        filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
+        filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
       })
 
       -- Key mappings for LSP
@@ -98,6 +87,7 @@ return {
       "hrsh7th/cmp-cmdline",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
+      "Exafunction/codeium.nvim",
     },
     config = function()
       local cmp = require("cmp")
@@ -136,6 +126,7 @@ return {
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
+          { name = 'codeium' },
           { name = 'luasnip' },
         }, {
           { name = 'buffer' },
