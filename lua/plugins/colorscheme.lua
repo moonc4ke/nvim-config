@@ -8,7 +8,7 @@ return {
   config = function()
     require("catppuccin").setup({
       flavour = "mocha",
-      transparent_background = true, -- Enable transparency
+      transparent_background = false, -- Disable transparency
       term_colors = true,
       integrations = {
         cmp = true,
@@ -19,8 +19,5 @@ return {
     })
     vim.cmd.colorscheme "catppuccin"
     
-    -- Additional transparency settings
-    vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
   end
 } 

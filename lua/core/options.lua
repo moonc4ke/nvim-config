@@ -54,16 +54,5 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   end,
 })
 
--- Transparency settings
-vim.opt.termguicolors = true  -- Enable true color support
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-    -- Ensure transparency settings are applied after any colorscheme change
-    vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "NONE" })
-  end
-}) 
+-- Color settings
+vim.opt.termguicolors = true  -- Enable true color support 
