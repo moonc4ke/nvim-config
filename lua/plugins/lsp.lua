@@ -16,7 +16,6 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "ts_ls",        -- TypeScript/JavaScript LSP
-          "angularls",    -- Angular LSP
           "html",         -- HTML LSP
           "cssls",        -- CSS LSP
           "eslint",       -- ESLint LSP
@@ -44,12 +43,6 @@ return {
         },
       })
 
-      -- Angular LSP
-      lspconfig.angularls.setup({
-        capabilities = capabilities,
-        filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx" },
-        root_dir = lspconfig.util.root_pattern("angular.json", "project.json"),
-      })
 
       -- HTML LSP
       lspconfig.html.setup({
@@ -68,6 +61,21 @@ return {
       lspconfig.eslint.setup({
         capabilities = capabilities,
         filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+      })
+
+      -- Configure diagnostics to always show virtual text
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+        float = {
+          border = 'rounded',
+          source = 'always',
+          header = '',
+          prefix = '',
+        },
       })
 
       -- Key mappings for LSP

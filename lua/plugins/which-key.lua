@@ -12,6 +12,10 @@ return {
       triggers = {
         { "<auto>", mode = "nxsot" },
       },
+      win = {
+        border = "none",
+        padding = { 1, 2 },
+      },
     })
 
     -- Popular Vim motions and commands help menu
@@ -49,7 +53,7 @@ return {
             "  - - File explorer | :w - Save | :q - Quit",
             "  Shift+H/L - Previous/next buffer | <leader>bd - Delete buffer",
             "",
-            "🔭 TELESCOPE:",
+            "🔭 SNACK:",
             "  <leader>ff - Find files | <leader>fg - Live grep",
             "  <leader>fb - Buffers | <leader>fh - Help tags",
             ""
