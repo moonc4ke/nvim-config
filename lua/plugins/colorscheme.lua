@@ -34,7 +34,7 @@ return {
       },
 
       -- ✅ Do all transparency here so it's applied with the colorscheme
-      custom_highlights = function()
+      custom_highlights = function(colors)
         local none = { bg = "NONE" }
         return {
           -- Core
@@ -60,7 +60,7 @@ return {
           -- WhichKey
           WhichKey = none,
           WhichKeyFloat = none,
-          WhichKeyBorder = none,
+          WhichKeyBorder = { bg = "NONE", fg = colors.blue },
           WhichKeyGroup = none,
           WhichKeyDesc = none,
           WhichKeySeparator = none,
@@ -84,7 +84,7 @@ return {
           -- Oil
           OilNormal = none,
           OilFloat = none,
-          OilBorder = none,
+          OilBorder = { bg = "NONE", fg = colors.blue },
           OilFile = none,
           OilDir = none,
         }

@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   config = function()
     local wk = require("which-key")
-    
+
     wk.setup({
       preset = "modern",
       delay = 500,
@@ -13,7 +13,7 @@ return {
         { "<auto>", mode = "nxsot" },
       },
       win = {
-        border = "none",
+        border = "rounded",
         padding = { 1, 2 },
       },
     })
