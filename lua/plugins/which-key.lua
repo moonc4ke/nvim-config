@@ -56,6 +56,15 @@ return {
             "🔭 SNACK:",
             "  <leader>ff - Find files | <leader>fg - Live grep",
             "  <leader>fb - Buffers | <leader>fh - Help tags",
+            "",
+            "🎯 MULTI-CURSOR:",
+            "  <leader>m - Create multi-cursor on word/selection",
+            "  MCstart/MCclear - Start/clear multi-cursors",
+            "",
+            "🔄 SURROUND (quotes/brackets):",
+            "  cs\"' - Change \" to ' | cs'( - Change ' to (",
+            "  ds\" - Delete quotes | ysiw\" - Add quotes around word",
+            "  Visual + S\" - Surround selection with quotes",
             ""
           }
           
