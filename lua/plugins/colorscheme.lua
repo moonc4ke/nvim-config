@@ -37,7 +37,6 @@ return {
       default_integrations = true,
       integrations = {
         cmp = true,
-        gitsigns = true,
         nvimtree = false,
         neotree = true,
         treesitter = true,

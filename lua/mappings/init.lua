@@ -24,8 +24,6 @@ M.setup = function()
     print('Copied to clipboard: ' .. relative_path)
   end, { desc = "Copy relative file path" })
   
-  -- Zen Mode toggle
-  vim.keymap.set('n', '<leader>z', ':ZenMode<CR>', { desc = "Toggle Zen Mode" })
   
   -- Buffer navigation
   vim.keymap.set('n', '<leader>bh', ':bprevious<CR>', { desc = "Previous buffer" })
@@ -51,6 +49,9 @@ M.setup = function()
   vim.keymap.set('n', '<leader>lr', ':LspRestart<CR>', { desc = "LSP Restart" })
   vim.keymap.set('n', '<leader>ls', ':LspStart<CR>', { desc = "LSP Start" })
   vim.keymap.set('n', '<leader>lx', ':LspStop<CR>', { desc = "LSP Stop" })
+  
+  -- Git/Lazygit
+  vim.keymap.set('n', '<leader>gg', function() require("snacks").lazygit() end, { desc = "Lazygit" })
 end
 
 return M 

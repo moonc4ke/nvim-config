@@ -12,6 +12,9 @@ return {
       indent = { enable = true },
       sync_install = false,
       auto_install = true,
+      matchup = {
+        enable = true, -- Enable vim-matchup integration
+      },
     })
     
     vim.treesitter.language.register("html", "hbs")
