@@ -87,6 +87,17 @@ return {
           OilBorder = { bg = "NONE", fg = colors.blue },
           OilFile = none,
           OilDir = none,
+
+
+          -- Float titles & winbars
+          FloatTitle = { bg = "NONE", fg = colors.blue, bold = true },
+          WinBar = none,
+          OilTitle = none,
+
+          -- Transparent tabline with visible text
+          TabLine     = { bg = "NONE", fg = colors.blue },   -- inactive tabs
+          TabLineSel  = { bg = "NONE", fg = colors.lavender, bold = true }, -- active tab
+          TabLineFill = { bg = "NONE" }, -- empty space in tabline
         }
       end,
     })
