@@ -1,48 +1,21 @@
--- Colorscheme plugin configuration
-
 return {
-  "catppuccin/nvim", 
-  name = "catppuccin", 
+  "catppuccin/nvim",
+  name = "catppuccin",
   lazy = false,
   priority = 1000,
   config = function()
     require("catppuccin").setup({
-      flavour = "mocha", -- latte, frappe, macchiato, mocha
-      transparent_background = true,
+      flavour = "mocha",
+      transparent_background = true, -- let terminal show through
       term_colors = false,
-      dim_inactive = {
-        enabled = false,
-        shade = "dark",
-        percentage = 0.15,
-      },
-      no_italic = false,
-      no_bold = false,
-      no_underline = false,
-      styles = {
-        comments = { "italic" },
-        conditionals = { "italic" },
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
-      },
-      color_overrides = {},
-      custom_highlights = {},
       default_integrations = true,
       integrations = {
         cmp = true,
-        nvimtree = false,
-        neotree = true,
         treesitter = true,
-        telescope = false,
         which_key = true,
         mason = true,
+        neotree = true,
+        snacks = { enabled = true },
         native_lsp = {
           enabled = true,
           virtual_text = {
@@ -58,98 +31,106 @@ return {
             information = { "underline" },
           },
         },
-        snacks = {
-          enabled = true,
-        },
       },
-    })
-    vim.cmd.colorscheme "catppuccin"
-    
-    -- Additional transparency settings for all plugins
-    vim.api.nvim_create_autocmd("ColorScheme", {
-      pattern = "*",
-      callback = function()
-        -- Main editor transparency
-        vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
-        
-        -- Lualine transparency
-        vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
-        
-        -- Bufferline transparency
-        vim.api.nvim_set_hl(0, "BufferLineBackground", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "BufferLineFill", { bg = "NONE" })
-        
-        -- Snacks transparency
-        vim.api.nvim_set_hl(0, "SnacksNormal", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "SnacksBorder", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "SnacksFloat", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "SnacksBackdrop", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "SnacksWinBar", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "SnacksTitle", { bg = "NONE" })
-        
-        -- Oil transparency
-        vim.api.nvim_set_hl(0, "OilNormal", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "OilFloat", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "OilBorder", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "OilFile", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "OilDir", { bg = "NONE" })
-        
-        -- Which-key transparency
-        vim.api.nvim_set_hl(0, "WhichKey", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "WhichKeyFloat", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "WhichKeyBorder", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "WhichKeyGroup", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "WhichKeyDesc", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "WhichKeySeparator", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "WhichKeyValue", { bg = "NONE" })
-        
-        -- LSP/diagnostic transparency
-        vim.api.nvim_set_hl(0, "LspInfoBorder", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { bg = "NONE" })
-        
-        -- Force transparency on all floating windows
-        vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "PmenuBorder", { bg = "NONE" })
-        
-        -- Generic transparency overrides
-        local transparent_groups = {
-          "Floating", "Float", "Border", "Backdrop", "Background", "Normal",
-          "Menu", "Popup", "Dialog", "Modal", "Panel", "Window"
+
+      -- ✅ Do all transparency here so it's applied with the colorscheme
+      custom_highlights = function()
+        local none = { bg = "NONE" }
+        return {
+          -- Core
+          Normal = none,
+          NormalNC = none,
+          NormalFloat = none,
+          FloatBorder = none,
+          SignColumn = none,
+          StatusLine = none,
+          StatusLineNC = none,
+
+          -- Popups / menus
+          Pmenu = none,
+          PmenuSel = none,
+          PmenuKind = none,
+          PmenuExtra = none,
+          PmenuBorder = none,
+
+          -- Bufferline
+          BufferLineFill = none,
+          BufferLineBackground = none,
+
+          -- WhichKey
+          WhichKey = none,
+          WhichKeyFloat = none,
+          WhichKeyBorder = none,
+          WhichKeyGroup = none,
+          WhichKeyDesc = none,
+          WhichKeySeparator = none,
+          WhichKeyValue = none,
+
+          -- LSP info/diagnostics in floats
+          LspInfoBorder = none,
+          DiagnosticFloatingError = none,
+          DiagnosticFloatingWarn = none,
+          DiagnosticFloatingInfo = none,
+          DiagnosticFloatingHint = none,
+
+          -- Snacks (common groups)
+          SnacksNormal = none,
+          SnacksBorder = none,
+          SnacksFloat = none,
+          SnacksBackdrop = none,
+          SnacksWinBar = none,
+          SnacksTitle = none,
+
+          -- Oil
+          OilNormal = none,
+          OilFloat = none,
+          OilBorder = none,
+          OilFile = none,
+          OilDir = none,
         }
-        
-        for _, group in ipairs(transparent_groups) do
-          pcall(vim.api.nvim_set_hl, 0, group, { bg = "NONE" })
-        end
       end,
     })
-    
-    -- Additional timer-based transparency enforcement
-    vim.defer_fn(function()
-      -- Force transparency again after all plugins have loaded
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
-      
-      -- Force snacks transparency
-      for i = 0, 50 do
-        pcall(vim.api.nvim_set_hl, 0, "Snacks" .. i, { bg = "NONE" })
+
+    vim.cmd.colorscheme("catppuccin")
+
+    -- Helper to keep any new float windows transparent without a timer
+    local function normalize_float_win()
+      local cfg = vim.api.nvim_win_get_config(0)
+      if cfg and cfg.relative ~= "" then
+        -- make the float use Normal for backgrounds and remove blending
+        vim.wo.winhighlight = "NormalFloat:Normal,FloatBorder:FloatBorder,Normal:Normal"
+        vim.wo.winblend = 0
       end
-      
-      -- Force oil transparency
-      for _, group in ipairs({"OilNormal", "OilFloat", "OilBorder", "OilFile", "OilDir"}) do
-        pcall(vim.api.nvim_set_hl, 0, group, { bg = "NONE" })
-      end
-      
-      -- Force which-key transparency
-      for _, group in ipairs({"WhichKey", "WhichKeyFloat", "WhichKeyBorder", "WhichKeyGroup", "WhichKeyDesc", "WhichKeySeparator", "WhichKeyValue"}) do
-        pcall(vim.api.nvim_set_hl, 0, group, { bg = "NONE" })
-      end
-    end, 1000)
-  end
-} 
+    end
+
+    -- 1) Re-apply links whenever colorscheme changes (no delay needed)
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      group = vim.api.nvim_create_augroup("TransparencyReload", { clear = true }),
+      callback = function()
+        -- Link common groups to Normal so they inherit transparency even if a plugin relinks later
+        local link = function(from, to)
+          pcall(vim.api.nvim_set_hl, 0, from, { link = to })
+        end
+        link("NormalFloat", "Normal")
+        link("Pmenu", "Normal")
+        link("SnacksNormal", "Normal")
+        link("WhichKeyFloat", "Normal")
+        link("OilFloat", "Normal")
+      end,
+    })
+
+    -- 2) Any time a new window is created or focused, fix floats immediately
+    vim.api.nvim_create_autocmd({ "WinNew", "BufWinEnter" }, {
+      group = vim.api.nvim_create_augroup("TransparencyFloats", { clear = true }),
+      callback = normalize_float_win,
+    })
+
+    -- 3) Make completion/doc popups non-blended
+    vim.o.pumblend = 0
+    vim.o.winblend = 0
+
+    -- 4) Ensure truecolor (helps with transparent terms)
+    vim.o.termguicolors = true
+  end,
+}
+
