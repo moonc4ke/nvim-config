@@ -13,13 +13,27 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "mason.nvim" },
     config = function()
+      -- Initialize capabilities once at the top
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
       require("mason-lspconfig").setup({
         ensure_installed = {
           "ts_ls",        -- TypeScript/JavaScript LSP
+          "angularls",    -- Angular Language Service
           "html",         -- HTML LSP
           "cssls",        -- CSS LSP
           "eslint",       -- ESLint LSP
+          "lua_ls",       -- Lua LSP
         },
+        automatic_installation = true,
+        handlers = {
+          -- Default handler for all servers
+          function(server_name)
+            require("lspconfig")[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
+        }
       })
     end,
   },
@@ -27,10 +41,13 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { "mason-lspconfig.nvim" },
     config = function()
+      -- Now we only need to override specific servers that need custom settings
+      -- All servers get autocompletion capabilities via the handlers above
+
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      -- TypeScript/JavaScript LSP
+      -- TypeScript/JavaScript LSP - override for custom settings
       lspconfig.ts_ls.setup({
         capabilities = capabilities,
         filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
@@ -43,25 +60,8 @@ return {
         },
       })
 
-
-      -- HTML LSP
-      lspconfig.html.setup({
-        capabilities = capabilities,
-        filetypes = { "html" },
-      })
-
-      -- CSS LSP
-      lspconfig.cssls.setup({
-        capabilities = capabilities,
-        filetypes = { "css", "scss", "less" },
-      })
-
-
-      -- ESLint LSP
-      lspconfig.eslint.setup({
-        capabilities = capabilities,
-        filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-      })
+      -- Angular, HTML, CSS, ESLint now get autocompletion automatically via handlers
+      -- No need to manually setup - they inherit capabilities from the default handler
 
       -- Configure diagnostics to always show virtual text
       vim.diagnostic.config({

@@ -17,4 +17,4 @@ require('core.options')
 require('core.lazy').setup()
 
 -- Load key mappings
-require('mappings').setup() 
+require('mappings').setup()
