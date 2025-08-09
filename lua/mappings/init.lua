@@ -13,7 +13,7 @@ M.setup = function()
   end, { desc = "Find all files (including hidden)" })
   vim.keymap.set('n', '<leader>fg', function() require("snacks").picker.grep() end, { desc = "Live grep" })
   vim.keymap.set('n', '<leader>fs', function() 
-    require("snacks").picker.grep({ fixed_strings = true }) 
+    require("snacks").picker.grep({ args = { "--fixed-strings" } }) 
   end, { desc = "Search literal strings" })
   vim.keymap.set('n', '<leader>ff', function() require("snacks").picker.recent() end, { desc = "File search history" })
   
