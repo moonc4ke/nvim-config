@@ -90,7 +90,7 @@ return {
 
 
           -- Float titles & winbars
-          FloatTitle = { bg = "NONE", fg = colors.blue, bold = true },
+          FloatTitle = { bg = "NONE", fg = colors.blue },
           WinBar = none,
           OilTitle = none,
 
