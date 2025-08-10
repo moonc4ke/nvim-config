@@ -1,7 +1,7 @@
 -- Codeium AI code completion plugin
 
 return {
-  "Exafunction/codeium.nvim",
+  "Exafunction/windsurf.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "hrsh7th/nvim-cmp",

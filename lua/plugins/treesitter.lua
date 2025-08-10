@@ -1,13 +1,13 @@
 -- Treesitter plugin configuration
 
 return {
-  "nvim-treesitter/nvim-treesitter", 
+  "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   config = function()
     local configs = require("nvim-treesitter.configs")
-    
+
     configs.setup({
-      ensure_installed = {"lua", "javascript", "ruby", "php", "typescript", "css", "scss", "html", "embedded_template", "json", "tsx", "angular", "latex", "norg", "svelte", "typst"},
+      ensure_installed = {"lua", "javascript", "ruby", "php", "typescript", "css", "scss", "html", "embedded_template", "json", "tsx", "angular", "latex", "norg", "svelte", "typst", "regex"},
       highlight = { enable = true },
       indent = { enable = true },
       sync_install = false,
@@ -16,8 +16,8 @@ return {
         enable = true, -- Enable vim-matchup integration
       },
     })
-    
+
     vim.treesitter.language.register("html", "hbs")
     vim.treesitter.language.register("html", "handlebars")
   end
-} 
+}
