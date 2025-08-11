@@ -16,7 +16,7 @@ return {
       linehl = false,
 
       -- Inline blame like “You, 6 days ago — message”
-      current_line_blame = true,
+      current_line_blame = false,
       current_line_blame_opts = {
         virt_text = true,
         virt_text_pos = "eol",
