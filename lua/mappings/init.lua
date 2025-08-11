@@ -70,6 +70,7 @@ M.setup = function()
     end
 
     local messages = vim.split(result.output or "", "\n")
+
     if #messages == 0 or (messages[1] == "" and #messages == 1) then
       vim.notify("No messages", vim.log.levels.INFO)
       return
@@ -86,7 +87,7 @@ M.setup = function()
     local row = math.floor((vim.o.lines - height) / 2)
     local col = math.floor((vim.o.columns - width) / 2)
 
-    vim.api.nvim_open_win(buf, true, {
+    local win = vim.api.nvim_open_win(buf, true, {
       relative = "editor",
       width = width,
       height = height,
@@ -97,6 +98,10 @@ M.setup = function()
       title = "Messages",
       title_pos = "center",
     })
+
+    -- Add key mappings to close the window
+    vim.keymap.set('n', 'q', function() vim.api.nvim_win_close(win, true) end, { buffer = buf })
+    vim.keymap.set('n', '<Esc>', function() vim.api.nvim_win_close(win, true) end, { buffer = buf })
   end
 
   -- Diagnostics / Debugging: Messages popup
