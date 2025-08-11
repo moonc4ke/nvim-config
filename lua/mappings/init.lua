@@ -63,8 +63,14 @@ M.setup = function()
 
   -- Floating window helper for messages
   local function open_messages_floating()
-    local messages = vim.split(vim.api.nvim_exec2("messages", { output = true }).output, "\n")
-    if #messages == 0 then
+    local ok, result = pcall(vim.api.nvim_exec2, "messages", { output = true })
+    if not ok then
+      vim.notify("Error getting messages: " .. result, vim.log.levels.ERROR)
+      return
+    end
+
+    local messages = vim.split(result.output or "", "\n")
+    if #messages == 0 or (messages[1] == "" and #messages == 1) then
       vim.notify("No messages", vim.log.levels.INFO)
       return
     end
