@@ -16,6 +16,7 @@ return {
         mason = true,
         neotree = true,
         snacks = { enabled = true },
+        gitsigns = true,
         native_lsp = {
           enabled = true,
           virtual_text = {
@@ -111,6 +112,12 @@ return {
           CursorLine     = { bg = colors.surface0 },
           ["@keyword"]   = { fg = colors.mauve },
           DiagnosticError = { fg = colors.red },
+
+          -- Git signs + blame
+          GitSignsAdd    = { fg = colors.green,  bg = "NONE" },
+          GitSignsChange = { fg = colors.peach,  bg = "NONE" },
+          GitSignsDelete = { fg = colors.red,    bg = "NONE" },
+          GitSignsCurrentLineBlame = { fg = colors.overlay1 }, -- inline blame text
         }
       end,
     })
