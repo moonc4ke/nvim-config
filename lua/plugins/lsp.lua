@@ -36,7 +36,30 @@ return {
           -- default handler for all other servers
           function(server_name)
             if server_name == "ts_ls" then return end -- we special-case below
-            if server_name == "angularls" and not IS_ANGULAR then return end
+            if server_name == "angularls" then
+              if not IS_ANGULAR then return end
+              lspconfig.angularls.setup({
+                capabilities = capabilities,
+                root_dir = function(fname)
+                  local angular_root = util.root_pattern("angular.json", "nx.json", "tsconfig.base.json")(fname)
+                  local vue_root = util.root_pattern("vue.config.js", "vite.config.ts", "vite.config.js", "nuxt.config.ts", "nuxt.config.js")(fname)
+                  if vue_root then return nil end -- Never attach to Vue projects
+                  return angular_root
+                end,
+                filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx" }, -- Exclude .vue
+              })
+              return
+            end
+            if server_name == "vue_ls" then
+              lspconfig.vue_ls.setup({
+                capabilities = capabilities,
+                filetypes = { "vue" },
+                root_dir = function(fname)
+                  return util.root_pattern("vue.config.js", "vite.config.ts", "vite.config.js")(fname)
+                end,
+              })
+              return
+            end
             lspconfig[server_name].setup({ capabilities = capabilities })
           end,
 
