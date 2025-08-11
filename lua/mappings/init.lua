@@ -13,7 +13,6 @@ M.setup = function()
   vim.keymap.set('n', '<leader>fs', function()
     require("snacks").picker.grep({ args = { "--fixed-strings" } })
   end, { desc = "Search literal strings" })
-  vim.keymap.set('n', '<leader>ff', function() require("snacks").picker.recent() end, { desc = "File search history" })
 
   -- Keymap to copy current file's relative path to clipboard
   vim.keymap.set('n', '<leader>cp', function()
