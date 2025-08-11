@@ -8,7 +8,25 @@ return {
     require("snacks").setup({
       -- Enable all modules
       picker = { enabled = true },
-      dashboard = { enabled = true },
+      dashboard = {
+        enabled = true,
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup" },
+        },
+        preset = {
+          keys = {
+            { icon = "󰈞", key = "f", desc = "Find File", action = ":lua Snacks.picker.files()" },
+            { icon = "󰈔", key = "n", desc = "New File", action = ":ene | startinsert" },
+            { icon = "󰊄", key = "g", desc = "Find Text", action = ":lua require('snacks').picker.grep({ args = { '--fixed-strings' } })" },
+            { icon = "󰋚", key = "r", desc = "Recent Files", action = ":lua Snacks.picker.recent()" },
+            { icon = "󰒓", key = "c", desc = "Config", action = ":lua Snacks.picker.files({cwd = vim.fn.stdpath('config')})" },
+            { icon = "󰒲", key = "L", desc = "Lazy", action = ":Lazy" },
+            { icon = "󰈆", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+      },
       notifier = { enabled = true },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
