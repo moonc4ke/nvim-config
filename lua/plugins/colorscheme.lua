@@ -38,10 +38,10 @@ return {
         local none = { bg = "NONE" }
         return {
           -- Core
-          Normal = none,
-          NormalNC = none,
+          Normal     = { bg = "NONE", fg = colors.text },
+          NormalNC   = { bg = "NONE", fg = colors.text },
           NormalFloat = none,
-          FloatBorder = none,
+          FloatBorder    = { bg = "NONE", fg = colors.blue },
           SignColumn = none,
           StatusLine = none,
           StatusLineNC = none,
@@ -101,6 +101,16 @@ return {
 
           -- Windsurf (Codeium) ghost text
           CodeiumSuggestion = { fg = colors.overlay0 },
+
+          -- Lazygit-related highlight groups (make sure fg is set)
+          Comment        = { bg = "NONE", fg = colors.overlay1 },
+          Function       = { bg = "NONE", fg = colors.blue },
+          Identifier     = { bg = "NONE", fg = colors.peach },
+          MatchParen     = { bg = "NONE", fg = colors.red },
+          Visual         = { bg = colors.surface0, fg = colors.text },
+          CursorLine     = { bg = colors.surface0 },
+          ["@keyword"]   = { fg = colors.mauve },
+          DiagnosticError = { fg = colors.red },
         }
       end,
     })
