@@ -17,7 +17,7 @@ return {
       explorer = { enabled = true },
       image = { enabled = true },
       input = { enabled = true },
-      lazygit = { 
+      lazygit = {
         enabled = true,
         theme = {
           [241]                   = { fg = "Special" },
@@ -53,7 +53,7 @@ return {
         },
       }
     })
-    
+
     -- Key mappings for snacks picker (replacing telescope)
     vim.keymap.set("n", "<leader>ff", function() require("snacks").picker.files() end, { desc = "Find files" })
     vim.keymap.set("n", "<leader>fg", function() require("snacks").picker.grep() end, { desc = "Live grep" })
