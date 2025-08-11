@@ -34,29 +34,8 @@ return {
               capabilities = capabilities,
             })
           end,
-          -- Custom TypeScript/JavaScript LSP with Vue support
-          ts_ls = function()
-            require("lspconfig").ts_ls.setup({
-              capabilities = capabilities,
-              filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" },
-              init_options = {
-                plugins = {
-                  {
-                    name = "@vue/typescript-plugin",
-                    location = vim.fn.stdpath('data') .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-                    languages = { "vue" },
-                  }
-                }
-              },
-              settings = {
-                typescript = {
-                  preferences = {
-                    disableSuggestions = false,
-                  },
-                },
-              },
-            })
-          end,
+          -- Skip ts_ls since we configure it manually in nvim-lspconfig
+          ts_ls = function() end,
         }
       })
     end,
@@ -65,6 +44,31 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { "mason-lspconfig.nvim" },
     config = function()
+      local lspconfig = require("lspconfig")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      -- TypeScript/JavaScript LSP with Vue support - configured here to ensure proper timing
+      lspconfig.ts_ls.setup({
+        capabilities = capabilities,
+        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" },
+        init_options = {
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = vim.fn.stdpath('data') .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+              languages = { "vue" },
+            }
+          }
+        },
+        settings = {
+          typescript = {
+            preferences = {
+              disableSuggestions = false,
+            },
+          },
+        },
+      })
+
       -- Configure diagnostics to always show virtual text
       vim.diagnostic.config({
         virtual_text = true,
