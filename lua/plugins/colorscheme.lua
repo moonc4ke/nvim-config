@@ -98,6 +98,9 @@ return {
           TabLine     = { bg = "NONE", fg = colors.blue },   -- inactive tabs
           TabLineSel  = { bg = "NONE", fg = colors.lavender, bold = true }, -- active tab
           TabLineFill = { bg = "NONE" }, -- empty space in tabline
+
+          -- Windsurf (Codeium) ghost text
+          CodeiumSuggestion = { fg = colors.overlay0 },
         }
       end,
     })
