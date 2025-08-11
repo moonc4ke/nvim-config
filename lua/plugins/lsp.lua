@@ -34,6 +34,29 @@ return {
               capabilities = capabilities,
             })
           end,
+          -- Custom TypeScript/JavaScript LSP with Vue support
+          ts_ls = function()
+            require("lspconfig").ts_ls.setup({
+              capabilities = capabilities,
+              filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" },
+              init_options = {
+                plugins = {
+                  {
+                    name = "@vue/typescript-plugin",
+                    location = vim.fn.stdpath('data') .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+                    languages = { "vue" },
+                  }
+                }
+              },
+              settings = {
+                typescript = {
+                  preferences = {
+                    disableSuggestions = false,
+                  },
+                },
+              },
+            })
+          end,
         }
       })
     end,
@@ -42,38 +65,6 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { "mason-lspconfig.nvim" },
     config = function()
-      -- Now we only need to override specific servers that need custom settings
-      -- All servers get autocompletion capabilities via the handlers above
-
-      local lspconfig = require("lspconfig")
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      -- TypeScript/JavaScript LSP - override for custom settings
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities,
-        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" },
-        init_options = {
-          plugins = {
-            {
-              name = "@vue/typescript-plugin",
-              location = vim.fn.stdpath('data') .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-              languages = { "vue" },
-            }
-          }
-        },
-        settings = {
-          typescript = {
-            preferences = {
-              disableSuggestions = false,
-            },
-          },
-        },
-      })
-
-
-      -- Angular, HTML, CSS, ESLint now get autocompletion automatically via handlers
-      -- No need to manually setup - they inherit capabilities from the default handler
-
       -- Configure diagnostics to always show virtual text
       vim.diagnostic.config({
         virtual_text = true,
