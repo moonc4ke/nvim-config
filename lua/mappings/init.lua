@@ -54,11 +54,6 @@ M.setup = function()
   -- Git/Lazygit
   vim.keymap.set('n', '<leader>gg', function() require("snacks").lazygit() end, { desc = "Lazygit" })
 
-  -- Git history (Diffview)
-  vim.keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory %<CR>", { desc = "File history (current file)" })
-  vim.keymap.set("n", "<leader>gH", "<cmd>DiffviewFileHistory<CR>",   { desc = "Repo history" })
-  vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen<CR>",          { desc = "Open diffview" })
-  vim.keymap.set("n", "<leader>gq", "<cmd>DiffviewClose<CR>",         { desc = "Close Diffview" })
 
   -- Floating window helper for messages
   local function open_messages_floating()
