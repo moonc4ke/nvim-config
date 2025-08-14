@@ -54,5 +54,5 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   end,
 })
 
--- Color settings
-vim.opt.termguicolors = true  -- Enable true color support 
+vim.opt.termguicolors = true  -- Enable true color support
+vim.opt.laststatus = 2  -- Always show statusline 
