@@ -31,6 +31,8 @@ M.setup = function()
   -- Diagnostic navigation and display
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Next diagnostic" })
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+  vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+  vim.keymap.set('n', '<leader>dN', vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
   vim.keymap.set('n', '<leader>dd', vim.diagnostic.open_float, { desc = "Show line diagnostics" })
   vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, { desc = "Open diagnostics quickfix list" })
   vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = "Open diagnostics location list" })
