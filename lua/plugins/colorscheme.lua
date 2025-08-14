@@ -118,6 +118,14 @@ return {
           GitSignsChange = { fg = colors.peach,  bg = "NONE" },
           GitSignsDelete = { fg = colors.red,    bg = "NONE" },
           GitSignsCurrentLineBlame = { fg = colors.overlay1 }, -- inline blame text
+          
+          -- Lazy.nvim highlights
+          LazyButton = { bg = colors.surface0, fg = colors.text },
+          LazyButtonActive = { bg = colors.surface2, fg = colors.blue, bold = true },
+          LazyH1 = { bg = colors.blue, fg = colors.base, bold = true },
+          LazySpecial = { fg = colors.blue },
+          LazyProgressDone = { fg = colors.green },
+          LazyProgressTodo = { fg = colors.overlay0 }
         }
       end,
     })

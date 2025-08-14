@@ -3,7 +3,6 @@ local M = {}
 M.setup = function()
   -- The 'desc' parameter in vim.keymap.set will automatically be used by which-key
   -- to display descriptions in its popup menu - no need to register separately
-  
 
   -- Snacks picker mappings (replacing telescope)
   vim.keymap.set('n', '<C-p>', function() require("snacks").picker.files() end, { desc = "Find files" })
@@ -21,7 +20,6 @@ M.setup = function()
     vim.fn.setreg('+', relative_path)
     print('Copied to clipboard: ' .. relative_path)
   end, { desc = "Copy relative file path" })
-
 
   -- Buffer navigation
   vim.keymap.set('n', '<S-h>', ':bprevious<CR>', { desc = "Previous buffer", silent = true })
@@ -56,7 +54,6 @@ M.setup = function()
 
   -- Git/Lazygit
   vim.keymap.set('n', '<leader>gg', function() require("snacks").lazygit() end, { desc = "Lazygit" })
-
 
   -- Floating window helper for messages
   local function open_messages_floating()
