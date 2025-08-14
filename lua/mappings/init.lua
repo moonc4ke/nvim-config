@@ -3,6 +3,7 @@ local M = {}
 M.setup = function()
   -- The 'desc' parameter in vim.keymap.set will automatically be used by which-key
   -- to display descriptions in its popup menu - no need to register separately
+  
 
   -- Snacks picker mappings (replacing telescope)
   vim.keymap.set('n', '<C-p>', function() require("snacks").picker.files() end, { desc = "Find files" })

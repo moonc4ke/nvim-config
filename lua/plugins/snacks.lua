@@ -32,6 +32,7 @@ return {
       statuscolumn = { enabled = true },
       words = { enabled = true },
       bigfile = { enabled = true },
+      bufdelete = { enabled = true },
       explorer = { enabled = true },
       image = { enabled = true },
       input = { enabled = true },
