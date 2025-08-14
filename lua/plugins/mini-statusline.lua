@@ -78,7 +78,7 @@ return {
         vim.api.nvim_set_hl(0, "MiniStatuslineGit", { bg = colors.green, fg = colors.base, bold = true })  -- Green for git branch
         vim.api.nvim_set_hl(0, "MiniStatuslineDevinfo", { bg = colors.surface0, fg = colors.text })
         vim.api.nvim_set_hl(0, "MiniStatuslineFilename", { bg = "NONE", fg = colors.text }) -- Transparent background
-        vim.api.nvim_set_hl(0, "MiniStatuslineFileinfo", { bg = colors.surface1, fg = colors.blue, bold = true }) -- Blue for location/progress
+        vim.api.nvim_set_hl(0, "MiniStatuslineFileinfo", { bg = colors.blue, fg = colors.base, bold = true }) -- Blue background with base text
         vim.api.nvim_set_hl(0, "MiniStatuslineInactive", { bg = "NONE", fg = colors.overlay1 }) -- Transparent background
       end,
     })
