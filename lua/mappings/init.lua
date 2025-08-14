@@ -24,9 +24,11 @@ M.setup = function()
 
 
   -- Buffer navigation
-  vim.keymap.set('n', '<leader>bh', ':bprevious<CR>', { desc = "Previous buffer" })
-  vim.keymap.set('n', '<leader>bl', ':bnext<CR>', { desc = "Next buffer" })
+  vim.keymap.set('n', '<S-h>', ':bprevious<CR>', { desc = "Previous buffer", silent = true })
+  vim.keymap.set('n', '<S-l>', ':bnext<CR>', { desc = "Next buffer", silent = true })
   vim.keymap.set('n', '<leader>bb', function() require("snacks").picker.buffers() end, { desc = "List buffers" })
+  vim.keymap.set('n', '<leader>bd', function() require("snacks").bufdelete() end, { desc = "Delete buffer" })
+  vim.keymap.set('n', '<leader>bo', function() require("snacks").bufdelete.other() end, { desc = "Delete other buffers" })
 
   -- Diagnostic navigation and display
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Next diagnostic" })
