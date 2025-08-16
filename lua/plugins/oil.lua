@@ -4,6 +4,10 @@ return {
   config = function()
     local oil = require("oil")
     oil.setup({
+      columns = {
+        "icon",
+        { "size", highlight = "Comment" },
+      },
       view_options = {
         show_hidden = true,
       },
