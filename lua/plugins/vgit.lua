@@ -2,7 +2,7 @@ return {
   "tanvirtin/vgit.nvim",
   lazy = false,  -- Load immediately to ensure it's ready for external file opens
   priority = 100,  -- Load early
-  dependencies = { 
+  dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons"  -- Optional but recommended
   },
@@ -65,10 +65,12 @@ return {
         },
       },
     })
-    
+
     -- Set up keymaps with descriptions for which-key
     vim.keymap.set('n', ']h', function() vgit.hunk_down() end, { desc = "Next git hunk" })
     vim.keymap.set('n', '[h', function() vgit.hunk_up() end, { desc = "Previous git hunk" })
+    vim.keymap.set('n', '<leader>gn', function() vgit.hunk_down() end, { desc = "Next git change" })
+    vim.keymap.set('n', '<leader>gN', function() vgit.hunk_up() end, { desc = "Previous git change" })
     vim.keymap.set('n', '<leader>gs', function() vgit.buffer_hunk_stage() end, { desc = "Stage hunk" })
     vim.keymap.set('n', '<leader>gr', function() vgit.buffer_hunk_reset() end, { desc = "Reset hunk" })
     vim.keymap.set('n', '<leader>gp', function() vgit.buffer_hunk_preview() end, { desc = "Preview hunk" })
@@ -77,28 +79,28 @@ return {
     vim.keymap.set('n', '<leader>gH', function() vgit.buffer_history_preview() end, { desc = "File history" })
     vim.keymap.set('n', '<leader>gS', function() vgit.buffer_stage() end, { desc = "Stage buffer" })
     vim.keymap.set('n', '<leader>gR', function() vgit.buffer_reset() end, { desc = "Reset buffer" })
-    
+
     -- Ensure vgit attaches to buffers opened from external sources (like lazygit)
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufReadPost" }, {
       group = vim.api.nvim_create_augroup("VGitLazyAttach", { clear = true }),
       callback = function(args)
         local bufnr = args.buf
-        
+
         -- Check if buffer is valid and is a normal file
         if not vim.api.nvim_buf_is_valid(bufnr) then
           return
         end
-        
+
         local buftype = vim.bo[bufnr].buftype
         if buftype ~= "" then
           return
         end
-        
+
         local file = vim.api.nvim_buf_get_name(bufnr)
         if file == "" or vim.fn.isdirectory(file) == 1 then
           return
         end
-        
+
         -- Defer to ensure everything is loaded
         vim.defer_fn(function()
           if vim.api.nvim_buf_is_valid(bufnr) then
