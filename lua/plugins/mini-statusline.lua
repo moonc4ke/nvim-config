@@ -44,22 +44,25 @@ return {
             diagnostics = diagnostics .. " H" .. diag_counts[vim.diagnostic.severity.HINT]
           end
 
-          -- Git changes info using simple git command
+          -- Git changes info for current file only
           local git_changes = ""
-          local handle = io.popen("git diff --numstat 2>/dev/null | awk '{add+=$1; del+=$2} END {print add, del}'")
-          if handle then
-            local result = handle:read("*l")
-            handle:close()
-            if result then
-              local added, deleted = result:match("(%d+)%s+(%d+)")
-              added = tonumber(added) or 0
-              deleted = tonumber(deleted) or 0
+          local current_file = vim.fn.expand("%")
+          if current_file ~= "" then
+            local handle = io.popen("git diff --numstat " .. vim.fn.shellescape(current_file) .. " 2>/dev/null | awk '{add+=$1; del+=$2} END {print add, del}'")
+            if handle then
+              local result = handle:read("*l")
+              handle:close()
+              if result then
+                local added, deleted = result:match("(%d+)%s+(%d+)")
+                added = tonumber(added) or 0
+                deleted = tonumber(deleted) or 0
 
-              if added > 0 then
-                git_changes = git_changes .. " +" .. added
-              end
-              if deleted > 0 then
-                git_changes = git_changes .. " -" .. deleted
+                if added > 0 then
+                  git_changes = git_changes .. " +" .. added
+                end
+                if deleted > 0 then
+                  git_changes = git_changes .. " -" .. deleted
+                end
               end
             end
           end
