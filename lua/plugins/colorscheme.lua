@@ -54,10 +54,6 @@ return {
           PmenuExtra = none,
           PmenuBorder = none,
 
-          -- Bufferline
-          BufferLineFill = none,
-          BufferLineBackground = none,
-
           -- WhichKey
           WhichKey = none,
           WhichKeyFloat = none,
@@ -82,6 +78,12 @@ return {
           SnacksWinBar = none,
           SnacksTitle = none,
 
+          -- Snacks picker highlights
+          SnacksPickerIcon = { fg = colors.overlay1 },
+          SnacksPickerIconFile = { fg = colors.overlay1 },
+          SnacksPickerIconBuffer = { fg = colors.overlay1 },
+          SnacksPickerSpecial = { fg = colors.overlay1 },
+
           -- Oil
           OilNormal = none,
           OilFloat = none,
@@ -89,16 +91,17 @@ return {
           OilFile = none,
           OilDir = none,
 
-
           -- Float titles & winbars
           FloatTitle = { bg = "NONE", fg = colors.blue },
           WinBar = none,
           OilTitle = none,
 
-          -- Transparent tabline with visible text
-          TabLine     = { bg = "NONE", fg = colors.blue },   -- inactive tabs
-          TabLineSel  = { bg = "NONE", fg = colors.lavender, bold = true }, -- active tab
-          TabLineFill = { bg = "NONE" }, -- empty space in tabline
+          -- Simple bufferline colors: active = blue bg, inactive = transparent
+          BufferLineBackground = { bg = "NONE", fg = colors.overlay1 },         -- inactive buffers: normal text
+          BufferLineBufferSelected = { bg = colors.blue, fg = colors.base },    -- active buffer: blue bg + dark text
+          BufferLineModified = { bg = "NONE", fg = colors.overlay1 },           -- inactive modified: transparent bg + overlay1 text
+          BufferLineModifiedSelected = { bg = colors.blue, fg = colors.base },  -- active modified: blue bg + dark text
+          BufferLineModifiedVisible = { bg = "NONE", fg = colors.overlay1 },    -- visible modified: transparent bg + overlay1 text
 
           -- Windsurf (Codeium) ghost text
           CodeiumSuggestion = { fg = colors.overlay0 },
@@ -118,7 +121,7 @@ return {
           GitSignsChange = { fg = colors.peach,  bg = "NONE" },
           GitSignsDelete = { fg = colors.red,    bg = "NONE" },
           GitSignsCurrentLineBlame = { fg = colors.overlay1 }, -- inline blame text
-          
+
           -- Lazy.nvim highlights
           LazyButton = { bg = colors.surface0, fg = colors.text },
           LazyButtonActive = { bg = colors.surface2, fg = colors.blue, bold = true },

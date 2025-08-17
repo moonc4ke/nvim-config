@@ -56,4 +56,7 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
 
 vim.opt.termguicolors = true  -- Enable true color support
 vim.opt.laststatus = 2  -- Always show statusline
-vim.opt.ruler = false  -- Disable built-in ruler since we show it in statusline 
+vim.opt.ruler = false  -- Disable built-in ruler since we show it in statusline
+
+-- Enable tabline for bufferline plugin
+vim.opt.showtabline = 2

@@ -1,5 +1,3 @@
--- Snacks.nvim plugin configuration
-
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -7,7 +5,10 @@ return {
   config = function()
     require("snacks").setup({
       -- Enable all modules
-      picker = { enabled = true },
+      picker = {
+        enabled = true,
+        preview = true,
+      },
       dashboard = {
         enabled = true,
         sections = {
