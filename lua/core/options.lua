@@ -60,3 +60,18 @@ vim.opt.ruler = false  -- Disable built-in ruler since we show it in statusline
 
 -- Enable tabline for bufferline plugin
 vim.opt.showtabline = 2
+
+-- Function to toggle bufferline visibility
+function _G.toggle_bufferline()
+  if vim.o.showtabline == 0 then
+    vim.o.showtabline = 2
+    print("Bufferline shown")
+  else
+    vim.o.showtabline = 0
+    print("Bufferline hidden")
+  end
+end
+
+-- Keymap to toggle bufferline
+vim.keymap.set('n', '<leader>bt', toggle_bufferline, { desc = 'Toggle Bufferline' })
+
