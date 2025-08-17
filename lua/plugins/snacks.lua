@@ -7,7 +7,6 @@ return {
       -- Enable all modules
       picker = {
         enabled = true,
-        preview = true,
       },
       dashboard = {
         enabled = true,
