@@ -30,7 +30,7 @@ return {
       },
       enforce_regular_tabs = false,
       tab_size = 0,
-      max_name_length = 30,
+      max_name_length = 60,
       modified_icon = '●',
       offsets = {
         {
