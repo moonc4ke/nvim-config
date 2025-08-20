@@ -96,12 +96,31 @@ return {
           WinBar = none,
           OilTitle = none,
 
-          -- Simple bufferline colors: active = blue bg, inactive = transparent
-          BufferLineBackground = { bg = "NONE", fg = colors.overlay1 },         -- inactive buffers: normal text
+          -- Complete bufferline colors: active = blue bg, inactive = transparent
+          BufferLineBackground = { bg = "NONE", fg = colors.overlay1 },         -- inactive buffers
           BufferLineBufferSelected = { bg = colors.blue, fg = colors.base },    -- active buffer: blue bg + dark text
-          BufferLineModified = { bg = "NONE", fg = colors.overlay1 },           -- inactive modified: transparent bg + overlay1 text
+          BufferLineBufferVisible = { bg = "NONE", fg = colors.overlay1 },      -- visible buffers (in another window)
+          BufferLineModified = { bg = "NONE", fg = colors.overlay1 },           -- inactive modified
           BufferLineModifiedSelected = { bg = colors.blue, fg = colors.base },  -- active modified: blue bg + dark text
-          BufferLineModifiedVisible = { bg = "NONE", fg = colors.overlay1 },    -- visible modified: transparent bg + overlay1 text
+          BufferLineModifiedVisible = { bg = "NONE", fg = colors.overlay1 },    -- visible modified
+          BufferLineFill = { bg = "NONE" },                                     -- background fill
+          BufferLineTab = { bg = "NONE", fg = colors.overlay1 },                -- tabs
+          BufferLineTabSelected = { bg = colors.blue, fg = colors.base },       -- selected tab
+          BufferLineTabClose = { bg = "NONE", fg = colors.overlay1 },           -- tab close button
+          BufferLineSeparator = { bg = "NONE", fg = "NONE" },                   -- separator
+          BufferLineSeparatorSelected = { bg = "NONE", fg = "NONE" },           -- selected separator
+          BufferLineSeparatorVisible = { bg = "NONE", fg = "NONE" },            -- visible separator
+          BufferLineCloseButton = { bg = "NONE", fg = colors.overlay1 },        -- close button
+          BufferLineCloseButtonSelected = { bg = colors.blue, fg = colors.base }, -- selected close button
+          BufferLineCloseButtonVisible = { bg = "NONE", fg = colors.overlay1 }, -- visible close button
+
+          -- Directory/path highlights for duplicate filenames
+          BufferLineNumbers = { bg = "NONE", fg = colors.overlay1 },            -- buffer numbers
+          BufferLineNumbersSelected = { bg = colors.blue, fg = colors.base },   -- selected buffer numbers
+          BufferLineNumbersVisible = { bg = "NONE", fg = colors.overlay1 },     -- visible buffer numbers
+          BufferLineDuplicateSelected = { bg = colors.blue, fg = colors.base }, -- selected duplicate path
+          BufferLineDuplicate = { bg = "NONE", fg = colors.overlay1 },          -- inactive duplicate path
+          BufferLineDuplicateVisible = { bg = "NONE", fg = colors.overlay1 },   -- visible duplicate path
 
           -- Windsurf (Codeium) ghost text
           CodeiumSuggestion = { fg = colors.overlay0 },
