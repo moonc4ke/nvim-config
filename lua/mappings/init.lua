@@ -7,8 +7,10 @@ M.setup = function()
   -- Snacks picker mappings (replacing telescope)
   vim.keymap.set('n', '<C-p>', function() require("snacks").picker.files() end, { desc = "Find files" })
   vim.keymap.set('n', '<leader>fa', function()
-    require("snacks").picker.files({ hidden = true })
-  end, { desc = "Find all files (including hidden)" })
+    require("snacks").picker.files({
+      args = { "--hidden", "--no-ignore" }
+    })
+  end, { desc = "Find all files (including hidden & gitignored)" })
   vim.keymap.set('n', '<leader>fg', function() require("snacks").picker.grep() end, { desc = "Live grep" })
   vim.keymap.set('n', '<leader>fs', function()
     require("snacks").picker.grep({ args = { "--fixed-strings" } })
