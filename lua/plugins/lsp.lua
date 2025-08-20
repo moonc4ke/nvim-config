@@ -41,7 +41,6 @@ return {
         "vue.config.ts", "vue.config.js"
       )(cwd) ~= nil
       if is_vue then
-        local root = util.find_git_ancestor(cwd) or cwd
         lspconfig.ts_ls.setup({
           capabilities = capabilities,
           single_file_support = false,
