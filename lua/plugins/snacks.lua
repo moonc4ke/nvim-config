@@ -56,7 +56,7 @@ return {
         },
       },
       scope = { enabled = true },
-      scroll = { enabled = true },
+      scroll = { enabled = false },  -- Disabled to prevent scroll conflicts
       styles = {
         notification = {
           wo = { wrap = true }, -- Wrap notifications
