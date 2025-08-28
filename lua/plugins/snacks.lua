@@ -2,6 +2,18 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
+  keys = {
+    -- Move existing keymaps here
+    { "<leader>ff", function() require("snacks").picker.files() end, desc = "Find files" },
+    { "<leader>fg", function() require("snacks").picker.grep() end, desc = "Live grep" },
+    { "<leader>fb", function() require("snacks").picker.buffers() end, desc = "Find buffers" },
+    { "<leader>fh", function() require("snacks").picker.help() end, desc = "Find help" },
+    { "<leader>fr", function() require("snacks").picker.recent() end, desc = "Recent files" },
+    { "<leader>fc", function() require("snacks").picker.commands() end, desc = "Commands" },
+    -- Add git file history
+    { "<leader>gH", function() require("snacks").picker.git_log_file() end, desc = "Git file history" },
+    { "<leader>gv", function() require("snacks").picker.git_diff() end, desc = "Git diff" },
+  },
   config = function()
     require("snacks").setup({
       -- Enable all modules
@@ -72,13 +84,5 @@ return {
         },
       }
     })
-
-    -- Key mappings for snacks picker (replacing telescope)
-    vim.keymap.set("n", "<leader>ff", function() require("snacks").picker.files() end, { desc = "Find files" })
-    vim.keymap.set("n", "<leader>fg", function() require("snacks").picker.grep() end, { desc = "Live grep" })
-    vim.keymap.set("n", "<leader>fb", function() require("snacks").picker.buffers() end, { desc = "Find buffers" })
-    vim.keymap.set("n", "<leader>fh", function() require("snacks").picker.help() end, { desc = "Find help" })
-    vim.keymap.set("n", "<leader>fr", function() require("snacks").picker.recent() end, { desc = "Recent files" })
-    vim.keymap.set("n", "<leader>fc", function() require("snacks").picker.commands() end, { desc = "Commands" })
   end
 }
