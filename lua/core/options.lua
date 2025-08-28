@@ -75,3 +75,14 @@ end
 -- Keymap to toggle bufferline
 vim.keymap.set('n', '<leader>bt', toggle_bufferline, { desc = 'Toggle Bufferline' })
 
+-- Smooth scrolling and performance settings
+vim.opt.scrolloff = 8         -- Keep 8 lines visible above/below cursor
+vim.opt.sidescrolloff = 8     -- Keep 8 columns visible left/right of cursor
+vim.opt.smoothscroll = true   -- Enable smooth scrolling (Neovim 0.10+)
+vim.opt.lazyredraw = false    -- Don't redraw while executing macros
+vim.opt.redrawtime = 1500     -- Time in milliseconds for redrawing
+vim.opt.updatetime = 250      -- Faster completion
+vim.opt.timeoutlen = 300      -- Time to wait for mapped sequence
+vim.opt.ttimeoutlen = 5       -- Time to wait for key codes
+vim.opt.ttyfast = true        -- Faster terminal connection
+
