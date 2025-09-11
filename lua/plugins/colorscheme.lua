@@ -129,7 +129,7 @@ return {
           Comment        = { bg = "NONE", fg = colors.overlay1 },
           Function       = { bg = "NONE", fg = colors.blue },
           Identifier     = { bg = "NONE", fg = colors.peach },
-          MatchParen     = { bg = "NONE", fg = colors.red },
+          MatchParen     = { bg = "NONE", fg = colors.teal },
           Visual         = { bg = colors.surface0, fg = colors.text },
           CursorLine     = { bg = colors.surface0 },
           ["@keyword"]   = { fg = colors.mauve },
