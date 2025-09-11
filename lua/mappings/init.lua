@@ -104,6 +104,11 @@ M.setup = function()
 
   -- Diagnostics / Debugging: Messages popup
   vim.keymap.set('n', '<leader>dm', open_messages_floating, { desc = "Show :messages in popup" })
+
+  -- Treesitter context navigation
+  vim.keymap.set("n", "[c", function()
+    require("treesitter-context").go_to_context(vim.v.count1)
+  end, { silent = true, desc = "Jump to context (upwards)" })
 end
 
 return M
