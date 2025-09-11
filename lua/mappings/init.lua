@@ -109,6 +109,13 @@ M.setup = function()
   vim.keymap.set("n", "[c", function()
     require("treesitter-context").go_to_context(vim.v.count1)
   end, { silent = true, desc = "Jump to context (upwards)" })
+
+  -- Matchup navigation (built-in keybindings, documented here for reference)
+  -- % : Go to next matching word
+  -- g% : Go to previous matching word  
+  -- [% : Go to previous outer open word
+  -- ]% : Go to next surrounding close word
+  -- z% : Go inside nearest inner contained block
 end
 
 return M
