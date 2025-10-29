@@ -19,6 +19,17 @@ return {
         "lua_ls",
         "ruby_lsp",
       },
+      handlers = {
+        -- Default handler for servers not manually configured
+        function(server_name)
+          local capabilities = require("cmp_nvim_lsp").default_capabilities()
+          vim.lsp.config(server_name, { capabilities = capabilities })
+          vim.lsp.enable(server_name)
+        end,
+        -- lua_ls and ts_ls are manually configured below
+        lua_ls = function() end,
+        ts_ls = function() end,
+      },
     },
   },
   {
