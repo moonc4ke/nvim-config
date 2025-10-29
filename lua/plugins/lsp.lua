@@ -99,9 +99,65 @@ return {
         return _bordered_float(contents, syntax, opts, ...)
       end
 
+      -- Custom references with deduplication across all LSP clients
+      local function show_references()
+        -- Get the first client for encoding
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
+        if #clients == 0 then
+          vim.notify("No LSP clients available", vim.log.levels.WARN)
+          return
+        end
+
+        local encoding = clients[1].offset_encoding or "utf-16"
+        local params = vim.lsp.util.make_position_params(0, encoding)
+        params.context = { includeDeclaration = true }
+
+        vim.lsp.buf_request_all(0, "textDocument/references", params, function(results)
+          -- Collect all results from all clients
+          local all_items = {}
+          for client_id, resp in pairs(results) do
+            if resp.result then
+              for _, item in ipairs(resp.result) do
+                table.insert(all_items, item)
+              end
+            end
+          end
+
+          if vim.tbl_isempty(all_items) then
+            vim.notify("No references found", vim.log.levels.INFO)
+            return
+          end
+
+          -- Deduplicate based on uri + range
+          local seen = {}
+          local deduplicated = {}
+          for _, ref in ipairs(all_items) do
+            local key = string.format("%s:%d:%d:%d:%d",
+              ref.uri,
+              ref.range.start.line,
+              ref.range.start.character,
+              ref.range["end"].line,
+              ref.range["end"].character
+            )
+            if not seen[key] then
+              seen[key] = true
+              table.insert(deduplicated, ref)
+            end
+          end
+
+          -- Convert to quickfix items and show
+          local items = vim.lsp.util.locations_to_items(deduplicated, encoding)
+          vim.fn.setqflist({}, " ", {
+            title = "References",
+            items = items,
+          })
+          vim.cmd("copen")
+        end)
+      end
+
       -- Keymaps
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
+      vim.keymap.set("n", "gr", show_references, { desc = "Go to references" })
       vim.keymap.set("n", "K",  vim.lsp.buf.hover,      { desc = "Hover documentation" })
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,     { desc = "Rename symbol" })
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
