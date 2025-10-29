@@ -25,16 +25,18 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { "mason-lspconfig.nvim" },
     config = function()
-      local lspconfig = require("lspconfig")
       local util = require("lspconfig.util")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      lspconfig.lua_ls.setup({
+      -- Configure lua_ls using new API
+      vim.lsp.config("lua_ls", {
         capabilities = capabilities,
         single_file_support = false,
         settings = { Lua = { diagnostics = { globals = { "vim" } } } },
       })
+      vim.lsp.enable("lua_ls")
 
+      -- Configure ts_ls for Vue projects
       local cwd = vim.loop.cwd()
       local is_vue = util.root_pattern(
         "nuxt.config.ts", "nuxt.config.js",
@@ -42,7 +44,7 @@ return {
         "vue.config.ts", "vue.config.js"
       )(cwd) ~= nil
       if is_vue then
-        lspconfig.ts_ls.setup({
+        vim.lsp.config("ts_ls", {
           capabilities = capabilities,
           single_file_support = false,
           root_dir = function(fname)
@@ -65,6 +67,7 @@ return {
           },
           settings = { typescript = { preferences = { disableSuggestions = false } } },
         })
+        vim.lsp.enable("ts_ls")
       end
 
       -- Diagnostics UI
