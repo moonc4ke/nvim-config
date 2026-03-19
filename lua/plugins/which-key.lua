@@ -68,7 +68,7 @@ return {
             "📁 FILES & BUFFERS:",
             "  - / <leader>e - File explorer (oil) | :w - Save | :q - Quit",
             "  Shift+H/L - Previous/next buffer | <leader>bd - Delete buffer",
-            "  <leader>cp - Copy relative file path to clipboard",
+            "  <leader>cp - Copy full file path to clipboard",
             "",
             "🔭 SNACKS:",
             "  <leader>ff - Find files | <leader>fg - Live grep",

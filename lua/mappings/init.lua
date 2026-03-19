@@ -16,12 +16,12 @@ M.setup = function()
     require("snacks").picker.grep({ args = { "--fixed-strings" } })
   end, { desc = "Search literal strings" })
 
-  -- Keymap to copy current file's relative path to clipboard
+  -- Keymap to copy current file's full path (with ~ for home) to clipboard
   vim.keymap.set('n', '<leader>cp', function()
-    local relative_path = vim.fn.fnamemodify(vim.fn.expand('%'), ':.')
-    vim.fn.setreg('+', relative_path)
-    print('Copied to clipboard: ' .. relative_path)
-  end, { desc = "Copy relative file path" })
+    local full_path = vim.fn.fnamemodify(vim.fn.expand('%'), ':~')
+    vim.fn.setreg('+', full_path)
+    print('Copied to clipboard: ' .. full_path)
+  end, { desc = "Copy full file path" })
 
   -- Buffer navigation
   vim.keymap.set('n', '<S-h>', ':bprevious<CR>', { desc = "Previous buffer", silent = true })
