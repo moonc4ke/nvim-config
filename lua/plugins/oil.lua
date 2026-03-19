@@ -25,7 +25,7 @@ return {
         },
       },
     })
-    vim.keymap.set("n", "-", oil.toggle_float, {})
-    vim.keymap.set("n", "<leader>e", oil.toggle_float, {})
+    vim.keymap.set("n", "-", oil.toggle_float, { desc = "Open oil file explorer" })
+    vim.keymap.set("n", "<leader>e", oil.toggle_float, { desc = "Open oil file explorer" })
   end,
 }

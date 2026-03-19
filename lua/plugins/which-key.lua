@@ -18,6 +18,18 @@ return {
       },
     })
 
+    -- Add leader key groups to avoid empty entries
+    wk.add({
+      { "<leader>b", group = "Buffers" },
+      { "<leader>d", group = "Diagnostics" },
+      { "<leader>f", group = "Find" },
+      { "<leader>g", group = "Git" },
+      { "<leader>l", group = "LSP" },
+      { "<leader>s", group = "Search/Replace" },
+      { "<leader>c", group = "Code" },
+      { "<leader>r", group = "Rename" },
+    })
+
     -- Popular Vim motions and commands help menu
     wk.add({
       {
@@ -25,37 +37,43 @@ return {
         function()
           -- Clear command line and display help
           vim.cmd('redraw!')
-          
+
           local help_text = {
             "📖 VIM HELP & COMMANDS",
             "═══════════════════════",
             "",
             "🚀 MOVEMENT:",
             "  h/j/k/l - Arrow keys | w/b/e - Word navigation",
-            "  0/$ - Line start/end | gg/G - File top/bottom", 
+            "  0/$ - Line start/end | gg/G - File top/bottom",
             "  Ctrl+u/d - Half page up/down | Ctrl+f/b - Full page",
+            "  [c - Jump to context (upwards)",
             "",
             "✏️  EDITING:",
             "  i/a - Insert/Append | o/O - New line below/above",
             "  x - Delete char | dd - Delete line | yy - Copy line",
             "  p/P - Paste after/before | u - Undo | Ctrl+r - Redo",
             "",
-            "🔍 SEARCH:",
+            "🔍 SEARCH & REPLACE:",
             "  / - Search forward | n/N - Next/previous result",
-            "  * - Search word under cursor | :%s/old/new/g - Replace all",
+            "  * - Search word under cursor | :%s/old/new/g - Replace in file",
+            "  <leader>sr - Search & Replace (project-wide)",
+            "  <leader>sf - Search & Replace (current file only)",
             "",
             "🔧 LSP & DIAGNOSTICS:",
             "  gd - Go to definition | gr - Go to references | K - Hover",
             "  <leader>ca - Code actions | <leader>rn - Rename",
-            "  [d/]d - Previous/next diagnostic",
+            "  [d - Previous diagnostic | ]d - Next diagnostic",
+            "  <leader>dd - Show line diagnostics",
             "",
             "📁 FILES & BUFFERS:",
-            "  - - File explorer | :w - Save | :q - Quit",
+            "  - / <leader>e - File explorer (oil) | :w - Save | :q - Quit",
             "  Shift+H/L - Previous/next buffer | <leader>bd - Delete buffer",
+            "  <leader>cp - Copy relative file path to clipboard",
             "",
-            "🔭 SNACK:",
+            "🔭 SNACKS:",
             "  <leader>ff - Find files | <leader>fg - Live grep",
             "  <leader>fb - Buffers | <leader>fh - Help tags",
+            "  <leader>fs - Search literal strings",
             "",
             "🎯 MULTI-CURSOR:",
             "  <leader>m - Create multi-cursor on word/selection",
@@ -65,6 +83,9 @@ return {
             "  cs\"' - Change \" to ' | cs'( - Change ' to (",
             "  ds\" - Delete quotes | ysiw\" - Add quotes around word",
             "  Visual + S\" - Surround selection with quotes",
+            "",
+            "🐙 GIT:",
+            "  <leader>gg - Open Lazygit",
             ""
           }
           
