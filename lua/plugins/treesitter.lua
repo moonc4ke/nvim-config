@@ -7,6 +7,7 @@ return {
       "lua", "javascript", "ruby", "php", "typescript", "css", "scss",
       "html", "embedded_template", "json", "tsx", "angular", "latex",
       "svelte", "typst", "regex", "vue", "bash",
+      "markdown", "markdown_inline",
     }
 
     local installed = require("nvim-treesitter.config").get_installed()
