@@ -6,7 +6,7 @@ return {
     local ensure_installed = {
       "lua", "javascript", "ruby", "php", "typescript", "css", "scss",
       "html", "embedded_template", "json", "tsx", "angular", "latex",
-      "svelte", "typst", "regex", "vue",
+      "svelte", "typst", "regex", "vue", "bash",
     }
 
     local installed = require("nvim-treesitter.config").get_installed()
